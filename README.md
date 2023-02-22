@@ -10,7 +10,7 @@ This is a fork of [MateuSai's Godot-Roguelike-Tutorial](https://github.com/Mateu
 
 3. Create your API key and copy it to your clipboard. 
 
-2. Clone this repository and past your API key in Rooms.gd where it says `var api_key = "enter your API key here"`
+2. Clone this repository and paste your API key in Rooms.gd where it says `var api_key = "enter your API key here"`
 
 3. Open Spotify (desktop/mobile app or web player) and start playing any random song.
 
