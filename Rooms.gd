@@ -30,6 +30,12 @@ func _ready() -> void:
 	
 	
 func _spawn_rooms() -> void:
+	# Play a song based on the floor
+	if SavedData.num_floor == 3:
+		_MelodyNet_play_song("motivational")
+	else:
+		_MelodyNet_play_song("happy")
+	
 	var previous_room: Node2D
 	var special_room_spawned: bool = false
 	
@@ -45,7 +51,6 @@ func _spawn_rooms() -> void:
 			else:
 				if SavedData.num_floor == 3:
 					room = SLIME_BOSS_SCENE.instance()
-					_MelodyNet_play_song("motivational")
 				else:
 					if (randi() % 3 == 0 and not special_room_spawned) or (i == num_levels - 2 and not special_room_spawned):
 						room = SPECIAL_ROOMS[randi() % SPECIAL_ROOMS.size()].instance()
@@ -53,7 +58,6 @@ func _spawn_rooms() -> void:
 					else:
 						room = INTERMEDIATE_ROOMS[randi() % INTERMEDIATE_ROOMS.size()].instance()
 						
-					_MelodyNet_play_song("happy")
 			var previous_room_tilemap: TileMap = previous_room.get_node("TileMap")
 			var previous_room_door: StaticBody2D = previous_room.get_node("Doors/Door")
 			var exit_tile_pos: Vector2 = previous_room_tilemap.world_to_map(previous_room_door.position) + Vector2.UP * 2
@@ -73,6 +77,7 @@ func _spawn_rooms() -> void:
 
 # Request a song of a specific mood to be played by MelodyNet API
 func _MelodyNet_play_song(mood):
+	print("Requesting song for ", mood)
 	var headers: PoolStringArray = [
 		'Content-Type: application/json',
 		str('Authorization: X-API-Key ', api_key)
@@ -89,6 +94,5 @@ func _MelodyNet_play_song(mood):
 # Debugging information
 func _on_request_completed(result, response_code, headers, body):
 	var json = JSON.parse(body.get_string_from_utf8())
-	print("Received:")
-	print(response_code)
+	print("Received: ", response_code)
 	print(json.result)
