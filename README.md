@@ -1,8 +1,17 @@
-# Godot-Roguelike-Tutorial
-A series of videos on how to make a roguelike using the Godot game engine: https://www.youtube.com/playlist?list=PL2-ArCpIQtjELkyLKec8BaVVCeunuHSK9
+# Godot-Roguelike-Tutorial-MelodyNetAPI
+This is a fork of [MateuSai's Godot-Roguelike-Tutorial](https://github.com/MateuSai/Godot-Roguelike-Tutorial) to demonstrate how to use MelodyNet API to add music to your games
 
-Play the game on itch.io: https://mateu-s.itch.io/godot-roguelike-tutorial
+## Instructions
+1. Go to the [MelodyNet Website](https://melodynet-web.vercel.app) to register your account
 
-![Spikes](Screenshots/spikes.png)
+2. After you're logged in, connect your Spotify (Premium account required)
 
-![Charged attack](Screenshots/charged_attack.png)
+- CURRENTLY OUR APP IS IN DEVELOPMENT MODE SO YOU WILL NEED TO CONTACT US DIRECTLY TO AUTHORIZE YOUR SPOTIFY ACCOUNT WITH OUR API
+
+3. Create your API key and copy it to your clipboard. 
+
+2. Clone this repository and past your API key in Rooms.gd where it says `var api_key = "enter your API key here"`
+
+3. Open Spotify (desktop/mobile app or web player) and start playing any random song.
+
+4. Start playing the game. The API should be called everytime a new floor starts, playing a new song on your Spotify. Normal floors will play a happy song, while boss floors will play motivational songs.
