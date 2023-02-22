@@ -15,8 +15,14 @@ export(int) var num_levels: int = 5
 
 onready var player: KinematicBody2D = get_parent().get_node("Player")
 
+# Variables for using MelodyNet API
+onready var http = $HTTPRequest
+var melodynet_base_url = "https://melodynetapi.onrender.com"
+var api_key = "enter your API key here"
 
 func _ready() -> void:
+	# Set up the HTTP connection for MelodyNet API calls
+	http.connect("request_completed", self, "_on_request_completed")
 	SavedData.num_floor += 1
 	if SavedData.num_floor == 3:
 		num_levels = 3
@@ -39,13 +45,15 @@ func _spawn_rooms() -> void:
 			else:
 				if SavedData.num_floor == 3:
 					room = SLIME_BOSS_SCENE.instance()
+					_MelodyNet_play_song("motivational")
 				else:
 					if (randi() % 3 == 0 and not special_room_spawned) or (i == num_levels - 2 and not special_room_spawned):
 						room = SPECIAL_ROOMS[randi() % SPECIAL_ROOMS.size()].instance()
 						special_room_spawned = true
 					else:
 						room = INTERMEDIATE_ROOMS[randi() % INTERMEDIATE_ROOMS.size()].instance()
-				
+						
+					_MelodyNet_play_song("happy")
 			var previous_room_tilemap: TileMap = previous_room.get_node("TileMap")
 			var previous_room_door: StaticBody2D = previous_room.get_node("Doors/Door")
 			var exit_tile_pos: Vector2 = previous_room_tilemap.world_to_map(previous_room_door.position) + Vector2.UP * 2
@@ -62,3 +70,25 @@ func _spawn_rooms() -> void:
 			
 		add_child(room)
 		previous_room = room
+
+# Request a song of a specific mood to be played by MelodyNet API
+func _MelodyNet_play_song(mood):
+	var headers: PoolStringArray = [
+		'Content-Type: application/json',
+		str('Authorization: X-API-Key ', api_key)
+	]
+
+	var play_data := {
+		"mood": mood,
+		"vocals": false,
+		"play": true,
+		"limit": 1
+	}
+	http.request(str(melodynet_base_url, "/core/recommendations/"), headers, true, HTTPClient.METHOD_POST, JSON.print(play_data))
+
+# Debugging information
+func _on_request_completed(result, response_code, headers, body):
+	var json = JSON.parse(body.get_string_from_utf8())
+	print("Received:")
+	print(response_code)
+	print(json.result)
