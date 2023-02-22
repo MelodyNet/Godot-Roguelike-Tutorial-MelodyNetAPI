@@ -14,4 +14,4 @@ This is a fork of [MateuSai's Godot-Roguelike-Tutorial](https://github.com/Mateu
 
 3. Open Spotify (desktop/mobile app or web player) and start playing any random song.
 
-4. Start playing the game. The API should be called everytime a new floor starts, playing a new song on your Spotify. Normal floors will play a happy song, while boss floors will play motivational songs.
+4. Start playing the game. The API should be called every time a new floor starts, playing a new song on your Spotify. Normal floors will play a happy song, while boss floors will play motivational songs. If you look at the output window in Godot Engine you will also see what mood is being requested and what the response code and track ID are.
