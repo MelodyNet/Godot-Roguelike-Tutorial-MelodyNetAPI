@@ -1,5 +1,7 @@
 # Godot-Roguelike-Tutorial-MelodyNetAPI
-This is a fork of [MateuSai's Godot-Roguelike-Tutorial](https://github.com/MateuSai/Godot-Roguelike-Tutorial) to demonstrate how to use MelodyNet API to add music to your games
+This is a fork of [MateuSai's Godot-Roguelike-Tutorial](https://github.com/MateuSai/Godot-Roguelike-Tutorial) to demonstrate how to use MelodyNet API to add music to your games. 
+
+[Video Demo](https://youtu.be/9IR4Eshn0HU)
 
 
 ## Requirements
