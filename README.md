@@ -15,7 +15,7 @@ You will need:
 
 &emsp; <img width="949" alt="image" src="https://user-images.githubusercontent.com/42020364/221728485-094aacbf-d755-49d3-827f-ec2d973754cb.png">
 
-- Currently, our app is in development mode so you will also need to contact us directly to authorize your Spotify account with our API in addition to this step
+- Currently, our app is in development mode so you will also need to contact us directly to authorize your Spotify account with our API in addition to this step. Please message alvii147#5876 on Discord.
 
 3. Create your API key by clicking "API Key" in your dashboard and "Generate New API Key". Copy it somewhere as it will be used later on.
 
